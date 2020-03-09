@@ -3,7 +3,7 @@ package com.synchro.voos.voos.models;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @EntityScan
-public class voo {
+public class voos {
     private Integer id;
     private String nome_emp;
     private Long preco;
@@ -11,11 +11,8 @@ public class voo {
     private String destino;
     private String data;
 
-    public voo() {
-        super();
-    }
 
-    public voo(final Integer id, final String nome_emp, final Long preco, final String origem, final String destino, final String data) {
+    public voos(final Integer id, final String nome_emp, final Long preco, final String origem, final String destino,final String data) {
         super();
         this.setId(id);
         this.setNome_emp(nome_emp);
@@ -24,10 +21,10 @@ public class voo {
         this.setDestino(destino);
         this.setData(data);
     }
+    public voos() {
+        super();
+    }
 
-
-
-//GETTERS AND SETRS
     public String getData() {
         return data;
     }

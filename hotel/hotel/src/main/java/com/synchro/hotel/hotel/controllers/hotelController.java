@@ -28,6 +28,7 @@ public class hotelController {
         return HOTELRepository.findById(id);
 
     }
+    
 
     @PostMapping(path = "")
     public @ResponseBody Object addHotel(@RequestBody final hotel hotel) {
