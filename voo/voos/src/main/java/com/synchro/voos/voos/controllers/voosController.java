@@ -32,9 +32,10 @@ public class voosController {
     public @ResponseBody List<voos> listVoos() {
       return voos.findAll();
     }
+
     @GetMapping(path={"/{id}"})
-    public @ResponseBody Object listarByID(@PathVariable Long id) {
-      return voos.getNameById(id);
+    public @ResponseBody Object listVoosID(@PathVariable Long id) {
+      return voos.findById(id);
     }
    
     
@@ -48,11 +49,11 @@ public class voosController {
       voos.deleteById(id);
     }
 
-    @PutMapping({"/{id}"})
-    public @ResponseBody Object atualizar(@PathVariable Integer id,@RequestBody voos VOOS) {
-      voos.update(id,VOOS);
-      return new ResponseEntity<voos>(VOOS, HttpStatus.OK);
-    }
+    // @PutMapping({"/{id}"})
+    // public @ResponseBody Object atualizar(@PathVariable Integer id,@RequestBody voos VOOS) {
+    //   voos.update(id,VOOS);
+    //   return new ResponseEntity<voos>(VOOS, HttpStatus.OK);
+    // }
 
 
 }

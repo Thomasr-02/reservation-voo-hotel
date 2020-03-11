@@ -22,11 +22,29 @@ public class voosService implements voosRepository {
         return jdbcTemplate.queryForObject("select count(*) from voos", Integer.class);
     }
 
-    // @Override
-    // public Object save(final voos Voos) {
-    //     return jdbcTemplate.update("insert into voos (preco,nome_emp,origem,destino) values(?,?,?,?)", Voos.getPreco(),
-    //             Voos.getnome_emp(), Voos.getOrigem(), Voos.getDestino());
-    // }
+    @Override
+    public List<voos> findAll() {
+        return jdbcTemplate.query("select *from voos", (rs, rowNum) -> new voos(rs.getInt("id"),
+                rs.getString("nome_emp"), rs.getLong("preco"), rs.getString("origem"), rs.getString("destino"),rs.getString("data_ida"),rs.getString("data_volta") ));
+    }
+
+    @Override
+    public Object findById(Long id) {
+        return jdbcTemplate.query("select *from voos where id=?", (rs, rowNum) -> new voos(rs.getInt("id"),
+                rs.getString("nome_emp"), rs.getLong("preco"), rs.getString("origem"), rs.getString("destino"),rs.getString("data_ida"),rs.getString("data_volta")),id);
+    }
+
+
+    @Override
+    public Object save(final voos Voos) {
+        return jdbcTemplate.update("insert into voos (preco,nome_emp,origem,destino,data_ida,data_volta) values(?,?,?,?,?,?)", Voos.getPreco(),
+                Voos.getnome_emp(), Voos.getOrigem(), Voos.getDestino(),Voos.getData_ida(),Voos.getData_volta());
+    }
+   
+    @Override
+    public int deleteById(Integer id) {
+        return jdbcTemplate.update("delete from voos where id=?", id);
+    }
 
     // @Override
     // public int update(Integer id, final voos voos) {
@@ -35,30 +53,16 @@ public class voosService implements voosRepository {
     //             voos.getnome_emp(), voos.getPreco(), voos.getOrigem(), voos.getDestino(), id);
     // }
 
-    @Override
-    public int deleteById(Integer id) {
-        return jdbcTemplate.update("delete from voos where id=?", id);
-    }
-
-    @Override
-    public List<voos> findAll() {
-        return jdbcTemplate.query("select *from voos", (rs, rowNum) -> new voos(rs.getInt("id"),
-                rs.getString("nome_emp"), rs.getBigDecimal("preco"), rs.getString("origem"), rs.getString("destino")));
-    }
+   
+   
 
     @Override
     public List<voos> findByOrigemAndDestino(final String Destino, final String Origem) {
         return jdbcTemplate.query("select * from voos where origem like ? and destino <= ?",
                 new Object[] { "%" + Origem + "%", Destino },
-                (rs, rowNum) -> new voos(rs.getInt("id"), rs.getString("nome_emp_Emp"), rs.getBigDecimal("preco"),
-                        rs.getString("origem"), rs.getString("destino")));
+                (rs, rowNum) -> new voos(rs.getInt("id"), rs.getString("nome_emp_Emp"), rs.getLong("preco"),
+                        rs.getString("origem"), rs.getString("destino"), rs.getString("data_ida"),rs.getString("data_volta")));
     }
-
-    /*
-     * @Override public voos findById(Long id) {
-     * 
-     * }
-     */
 
     @Override
     public String getNameById(final Long id) {
@@ -66,17 +70,11 @@ public class voosService implements voosRepository {
     }
 
     @Override
-    public Object save(voos voos) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
     public int update(Integer id, voos voos) {
-        // TODO Auto-generated method stub
-        return 0;
+        return 1;
     }
 
+  
     
 
 }

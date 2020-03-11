@@ -18,7 +18,7 @@ public interface voosRepository  {
 
     List<voos> findByOrigemAndDestino(String Destino, String Origem);
 
-    // Object findById(Long id);
+    Object findById(Long id);
 
     String getNameById(Long id);
 
