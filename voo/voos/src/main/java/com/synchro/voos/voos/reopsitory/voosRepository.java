@@ -1,4 +1,4 @@
-package com.synchro.voos.voos.repository;
+package com.synchro.voos.voos.reopsitory;
 
 import java.util.List;
 
@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface voosRepository  {
-    int count();
     List<voos> findAll();
     
 }

@@ -4,7 +4,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @EntityScan
 public class voos {
-   
+    
     private Integer id;
     private String nome_emp;
     private Long preco;
@@ -12,7 +12,9 @@ public class voos {
     private String destino;
     private String data;
 
-
+    public voos() {
+        super();
+    }
     public voos(final Integer id, final String nome_emp, final Long preco, final String origem, final String destino,final String data) {
         super();
         this.setId(id);
@@ -22,9 +24,9 @@ public class voos {
         this.setDestino(destino);
         this.setData(data);
     }
-    public voos() {
-        super();
-    }
+   
+
+
 
     
     public String getData() {
