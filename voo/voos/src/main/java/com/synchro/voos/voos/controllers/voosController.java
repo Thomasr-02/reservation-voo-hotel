@@ -1,7 +1,5 @@
 package com.synchro.voos.voos.controllers;
 
-import java.util.List;
-
 import com.synchro.voos.voos.models.voos;
 import com.synchro.voos.voos.repository.voosRepository;
 
@@ -18,7 +16,9 @@ public class voosController {
     private voosRepository voos;
 
     @GetMapping(path = "")
-    public @ResponseBody List<voos> listVoos() {
+    public @ResponseBody Iterable<voos> listVoos() {
       return voos.findAll();
     }
+
+    
 }

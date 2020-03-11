@@ -12,10 +12,16 @@ import org.springframework.stereotype.Repository;
 public class voosService implements voosRepository {
 
     public JdbcTemplate jdbcTemplate;
-
+   
+    @Override
+    public int count() {
+        return jdbcTemplate
+                .queryForObject("select count(*) from books", Integer.class);
+    }
+   
     @Override
     public List<voos> findAll() {
-        return jdbcTemplate.query("select *from voos", (rs, rowNum) ->
+        return jdbcTemplate.query("select * from voos", (rs, rowNum) ->
         new voos(
             rs.getInt("id"),
             rs.getString("nome"),

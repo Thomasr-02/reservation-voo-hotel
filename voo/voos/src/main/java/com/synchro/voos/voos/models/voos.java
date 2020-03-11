@@ -4,6 +4,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @EntityScan
 public class voos {
+   
     private Integer id;
     private String nome_emp;
     private Long preco;
@@ -25,6 +26,7 @@ public class voos {
         super();
     }
 
+    
     public String getData() {
         return data;
     }
