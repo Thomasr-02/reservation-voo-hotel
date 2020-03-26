@@ -1,10 +1,11 @@
-.login {
-    width: 100%;
-    background-color: rgb(224, 211, 94);
-  
-}
 
-.login form-control{
-    color:black;
+
+.login{
+    color: azure;
+    background-color:rgba(28, 28, 36, 0.7);
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    padding-top: 10%;
     
 }

@@ -25,20 +25,20 @@ public class voosService implements voosRepository {
     @Override
     public List<voos> findAll() {
         return jdbcTemplate.query("select *from voos", (rs, rowNum) -> new voos(rs.getInt("id"),
-                rs.getString("nome_emp"), rs.getLong("preco"), rs.getString("origem"), rs.getString("destino"),rs.getString("data_ida"),rs.getString("data_volta") ));
+                rs.getString("nomeEmp"), rs.getLong("preco"), rs.getString("origem"), rs.getString("destino"),rs.getString("data_ida"),rs.getString("data_volta") ));
     }
 
     @Override
     public Object findById(Long id) {
         return jdbcTemplate.query("select *from voos where id=?", (rs, rowNum) -> new voos(rs.getInt("id"),
-                rs.getString("nome_emp"), rs.getLong("preco"), rs.getString("origem"), rs.getString("destino"),rs.getString("data_ida"),rs.getString("data_volta")),id);
+                rs.getString("nomeEmp"), rs.getLong("preco"), rs.getString("origem"), rs.getString("destino"),rs.getString("data_ida"),rs.getString("data_volta")),id);
     }
 
 
     @Override
     public Object save(final voos Voos) {
-        return jdbcTemplate.update("insert into voos (preco,nome_emp,origem,destino,data_ida,data_volta) values(?,?,?,?,?,?)", Voos.getPreco(),
-                Voos.getnome_emp(), Voos.getOrigem(), Voos.getDestino(),Voos.getData_ida(),Voos.getData_volta());
+        return jdbcTemplate.update("insert into voos (preco,nomeEmp,origem,destino,data_ida,data_volta) values(?,?,?,?,?,?)", Voos.getPreco(),
+                Voos.getnomeEmp(), Voos.getOrigem(), Voos.getDestino(),Voos.getData_ida(),Voos.getData_volta());
     }
    
     @Override
@@ -49,8 +49,8 @@ public class voosService implements voosRepository {
     // @Override
     // public int update(Integer id, final voos voos) {
     //     return jdbcTemplate.update(
-    //             "update from voos set nome_emp= ?, set preco = ?, set origem = ?, set destino = ?  where id=?",
-    //             voos.getnome_emp(), voos.getPreco(), voos.getOrigem(), voos.getDestino(), id);
+    //             "update from voos set nomeEmp= ?, preco = ?,  origem = ?,  destino = ?  where id=?",
+    //             voos.getnomeEmp(), voos.getPreco(), voos.getOrigem(), voos.getDestino(), id);
     // }
 
    
@@ -60,7 +60,7 @@ public class voosService implements voosRepository {
     public List<voos> findByOrigemAndDestino(final String Destino, final String Origem) {
         return jdbcTemplate.query("select * from voos where origem like ? and destino <= ?",
                 new Object[] { "%" + Origem + "%", Destino },
-                (rs, rowNum) -> new voos(rs.getInt("id"), rs.getString("nome_emp_Emp"), rs.getLong("preco"),
+                (rs, rowNum) -> new voos(rs.getInt("id"), rs.getString("nomeEmp_Emp"), rs.getLong("preco"),
                         rs.getString("origem"), rs.getString("destino"), rs.getString("data_ida"),rs.getString("data_volta")));
     }
 
