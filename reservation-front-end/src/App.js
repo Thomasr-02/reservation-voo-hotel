@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import lottieControl from './components/lottieControl';
 import Login from './components/Login' 
-import Routes from './routes';
 import Lottie from 'react-lottie';
 
 class App extends React.Component{
