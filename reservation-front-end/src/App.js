@@ -8,9 +8,9 @@ class App extends React.Component{
    render() {
     return (
       <>
-        <body className="App-body">
+        <div className="App-body">
           <Login></Login>
-        </body>
+        </div>
       </>
     );
   }

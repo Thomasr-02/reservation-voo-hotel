@@ -33,18 +33,20 @@ export default class Login extends Component {
 
     render() {
         return (
-
-            <div className="login">
-                <div className="bodyLogin">
-                    <h3>Agende já sua viagem!!</h3>
-                    <h2>Digite seu nome !
+            <div className="background">
+                <div className="body-login">
+                    <div className="login">
+                        <div className="texto">
+                            <h3>Agende já sua viagem!!</h3>
+                            <h2>Digite seu nome !
                     </h2>
-                    <input id="search" type="text" placeholder="Digite seu nomer"  onChange={this.Login} className="form-control" minLength='3' />
-                    <Link to="/home"><button id="buttonSearch" onClick={this.Logar} type="button"     >Entrar </button>
-                    </Link>
+                            <input id="search" type="text" placeholder="Digite seu nome" onChange={this.Login} className="form-control" minLength='3' />
+                            <Link to="/home"><button id="buttonSearch" onClick={this.Logar} type="button"     >Entrar </button>
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         );
     }
 }

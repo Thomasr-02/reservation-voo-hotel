@@ -9,7 +9,7 @@ import 'react-inputs-validation/lib/react-inputs-validation.min.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import NotFound from './components/NotFound'
-import Home from './components/Home'
+import Home from './components/Home/Home'
 
 
 
