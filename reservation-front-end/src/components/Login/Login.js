@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import Axios from 'axios'
 import './Login.css'
-
+import GetsSetIds from '../pages-statics/GetSetIds'
 
 export default class Login extends Component {
     constructor(props) {
@@ -23,12 +23,13 @@ export default class Login extends Component {
         var nome = this.state.nome;
         console.log(nome)
         Axios.post('http://localhost:8080/users', { nome }).then((res) => {
-            console.log(res)
+           
+            GetsSetIds.idUser(res.data.id,"set")
 
         }
-        ).catch(
-            console.log("erro")
-        )
+        ).catch(err => console.log("erro"))
+        
+         
     }
 
     render() {

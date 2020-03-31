@@ -10,7 +10,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import NotFound from './components/pages-statics/NotFound'
 import Home from './components/Home/Home'
-
+import Hospedagem from './components/Hospedagem/Hospedagem'
 
 
 ReactDOM.render(
@@ -19,7 +19,7 @@ ReactDOM.render(
 
             <Route path="/" exact={true} component={App}></Route>
             <Route path="/home" exact={true} component={Home}></Route>
-            
+            <Route path="/hospedagem" exact={true} component={Hospedagem}></Route>
             <Route component={NotFound}></Route>
 
 

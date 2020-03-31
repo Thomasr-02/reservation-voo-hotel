@@ -25,13 +25,13 @@ public class voosService implements voosRepository {
     @Override
     public List<voos> findAll() {
         return jdbcTemplate.query("select *from voos", (rs, rowNum) -> new voos(rs.getInt("id"),
-                rs.getString("nomeEmp"), rs.getLong("preco"), rs.getString("origem"), rs.getString("destino"),rs.getString("data_ida"),rs.getString("data_volta") ));
+                rs.getString("nomeEmp"), rs.getDouble("preco"), rs.getString("origem"), rs.getString("destino"),rs.getString("data_ida"),rs.getString("data_volta") ));
     }
 
     @Override
     public Object findById(Long id) {
         return jdbcTemplate.query("select *from voos where id=?", (rs, rowNum) -> new voos(rs.getInt("id"),
-                rs.getString("nomeEmp"), rs.getLong("preco"), rs.getString("origem"), rs.getString("destino"),rs.getString("data_ida"),rs.getString("data_volta")),id);
+                rs.getString("nomeEmp"), rs.getDouble("preco"), rs.getString("origem"), rs.getString("destino"),rs.getString("data_ida"),rs.getString("data_volta")),id);
     }
 
 
@@ -60,7 +60,7 @@ public class voosService implements voosRepository {
     public List<voos> findByOrigemAndDestino(final String Destino, final String Origem) {
         return jdbcTemplate.query("select * from voos where origem like ? and destino <= ?",
                 new Object[] { "%" + Origem + "%", Destino },
-                (rs, rowNum) -> new voos(rs.getInt("id"), rs.getString("nomeEmp_Emp"), rs.getLong("preco"),
+                (rs, rowNum) -> new voos(rs.getInt("id"), rs.getString("nomeEmp_Emp"), rs.getDouble("preco"),
                         rs.getString("origem"), rs.getString("destino"), rs.getString("data_ida"),rs.getString("data_volta")));
     }
 

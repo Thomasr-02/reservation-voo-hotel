@@ -8,7 +8,7 @@ public class voos {
 
     private Long id;
     private String nomeEmp;
-    private Long preco;
+    private Double preco;
     private String origem;
     private String destino;
     private String data_ida;
@@ -34,7 +34,7 @@ public class voos {
         this.data_ida = data_ida;
     }
 
-    public voos(final long id, final String nomeEmp, final Long preco, final String origem, final String destino,final String data_ida,final String data_volta) {
+    public voos(final long id, final String nomeEmp, final Double preco, final String origem, final String destino,final String data_ida,final String data_volta) {
         super();
         this.id = id;
         this.nomeEmp = nomeEmp;
@@ -65,11 +65,11 @@ public class voos {
         this.origem = origem;
     }
 
-    public Long getPreco() {
+    public Double getPreco() {
         return preco;
     }
 
-    public void setPreco(final Long preco) {
+    public void setPreco(final Double preco) {
         this.preco = preco;
     }
 

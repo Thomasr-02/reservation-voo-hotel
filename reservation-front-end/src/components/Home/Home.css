@@ -56,3 +56,17 @@
     /* background-color:blue;
      */
 }
+.container-next{
+    margin: 90px 10px;
+    padding: 10px 10px;
+    color:black;
+    background-color: rgb(207, 207, 219) ;
+    border-radius: 15px;
+
+}
+
+
+#button-hosp{
+    
+    background-color: red;
+}

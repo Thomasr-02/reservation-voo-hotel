@@ -13,7 +13,7 @@ public class hotel {
     private String cidade;
     private String nome;
     private String descricao;
-    private Long preco;
+    private Double preco;
 
 
 
@@ -22,11 +22,11 @@ public class hotel {
         return id;
     }
 
-    public Long getPreco() {
+    public Double getPreco() {
         return preco;
     }
 
-    public void setPreco(final Long preco) {
+    public void setPreco(final Double preco) {
         this.preco = preco;
     }
 

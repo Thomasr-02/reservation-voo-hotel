@@ -44,11 +44,11 @@ public class voosController {
       return voos.save(VOOS);
     }
 
-
-    @PostMapping(path="") 
+//    rota local/
+   /*  @PostMapping(path="/filter") 
     public @ResponseBody Object salvar(@RequestBody voos VOOS) {
       return voos.save(VOOS);
-    }
+    } */
 
 
     @DeleteMapping(path={"/{id}"})

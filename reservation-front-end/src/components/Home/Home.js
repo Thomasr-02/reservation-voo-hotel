@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './Home.css'
 import Axios from 'axios';
 import { Link } from 'react-router-dom'
-
+import GetSetIds from '../pages-statics/GetSetIds'
 export default class Home extends Component {
     constructor(props) {
         super(props);
@@ -14,7 +14,6 @@ export default class Home extends Component {
     componentDidMount() {
         Axios.get('http://localhost:8081/voos')
             .then(res => {
-                console.log(res.data)
                 const voos = res.data;
                 this.setState({ voos });
 
@@ -41,8 +40,9 @@ export default class Home extends Component {
 
 
     }
-    submitCompra = () => {
-
+    submitCompra = (id) => {
+        console.log('voo ', id)
+        console.log(' quem comprou foi ',GetSetIds.idUser(0,'get') )
 
 
 
@@ -50,9 +50,8 @@ export default class Home extends Component {
     render() {
         return (
             <div className="body">
-               
-               
-               
+
+
                 <div className="container">
                     <form className="form" >
                         <div className="input-group">
@@ -62,6 +61,7 @@ export default class Home extends Component {
                                     name="origem"
                                     id="origem"
                                     onChange={this.escutadorDeInput}
+                                    placeholder="ex: Joao pessoa"
                                     required
                                 />
                             </div>
@@ -71,6 +71,8 @@ export default class Home extends Component {
                                 <input
                                     id="destino"
                                     name="destino"
+                                    placeholder="ex: Recife"
+
                                     onChange={this.escutadorDeInput}
                                     required
                                 />
@@ -80,13 +82,13 @@ export default class Home extends Component {
 
                         <div className="input-group">
                             <div className="input-block">
-                                
+
                                 <label htmlFor="data_ida">Data ida :</label>
                                 <input
                                     id="data_ida"
                                     name="data_ida"
                                     onChange={this.escutadorDeInput}
-                                    type="date" required
+                                    type="date" 
                                 />
                             </div>
 
@@ -95,9 +97,8 @@ export default class Home extends Component {
                                 <input type="date"
                                     id="data_volta"
                                     name="data_volta"
-
                                     onChange={this.escutadorDeInput}
-                                    required
+                                    
 
                                 />
                             </div>
@@ -105,7 +106,18 @@ export default class Home extends Component {
                         <button onClick={this.submitFormulario} className="btn btn-primary" type="button">Pesquisar
                     </button>
                     </form>
+
+                    <div className="container-next">
+                        <h4>Deseja reservar apenas a hospedagem ?</h4>
+                        <Link to="/hospedagem">
+                            <button onClick={this.submitFormulario} className="btn btn-primary" id="button-hosp" type="button">Clique aqui
+                            </button>
+                        </Link>
+                    </div>
+
                 </div>
+
+
 
                 <div className="group">
                     <p> Resultados encontrados:{this.state.voos.length}</p>
@@ -128,9 +140,10 @@ export default class Home extends Component {
                                 <p>{voo.data_volta}</p>
 
                                 <strong>VALOR:</strong>
-                                <p>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(voo.preco)}</p>
-                                <Link to="/home"><button className="btn btn-primary" id="buttoncompra" onClick={this.Logar} type="button"     >Comprar </button>
-                            </Link>
+                                <p>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(voo.preco)}</p>{/* problema aqui, ele esta escutando a funcao a quantidade de  vezes
+                                de listagem ou seja autoexecutando por causa da passagem do parametro () caso tirar funciona normal porem perdemos a passagem do parametro */}
+                                <Link to="/hospedagem"><button className="btn btn-primary" id="buttoncompra" onClick={()=>{this.submitCompra(voo.id)}} type="button"     >Comprar </button>
+                                </Link>
                             </div>
                         ))}
                     </div>
