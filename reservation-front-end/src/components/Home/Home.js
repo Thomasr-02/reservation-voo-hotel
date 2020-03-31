@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Home.css'
 import Axios from 'axios';
+import { Link } from 'react-router-dom'
 
 export default class Home extends Component {
     constructor(props) {
@@ -24,6 +25,7 @@ export default class Home extends Component {
 
 
     escutadorDeInput = event => {
+
         const { name, value } = event.target;
         console.log(name)
         console.log(value)
@@ -34,6 +36,12 @@ export default class Home extends Component {
 
 
     submitFormulario = () => {
+
+
+
+
+    }
+    submitCompra = () => {
 
 
 
@@ -72,6 +80,7 @@ export default class Home extends Component {
 
                         <div className="input-group">
                             <div className="input-block">
+                                
                                 <label htmlFor="data_ida">Data ida :</label>
                                 <input
                                     id="data_ida"
@@ -120,8 +129,8 @@ export default class Home extends Component {
 
                                 <strong>VALOR:</strong>
                                 <p>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(voo.preco)}</p>
-
-
+                                <Link to="/home"><button className="btn btn-primary" id="buttoncompra" onClick={this.Logar} type="button"     >Comprar </button>
+                            </Link>
                             </div>
                         ))}
                     </div>

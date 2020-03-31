@@ -44,6 +44,13 @@ public class voosController {
       return voos.save(VOOS);
     }
 
+
+    @PostMapping(path="") 
+    public @ResponseBody Object salvar(@RequestBody voos VOOS) {
+      return voos.save(VOOS);
+    }
+
+
     @DeleteMapping(path={"/{id}"})
     public @ResponseBody void delete(@PathVariable Integer id) {
       voos.deleteById(id);
