@@ -3,49 +3,76 @@ import './Home.css'
 import Axios from 'axios';
 import { Link } from 'react-router-dom'
 import GetSetIds from '../pages-statics/GetSetIds'
+import { Dropdown } from 'react-bootstrap'
+
+
+
 export default class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            voos: ['']
+            voos: [''],
+            origem: '',
+            destino: '',
+            data_ida: '',
+            data_volta: ''
         }
 
     }
     componentDidMount() {
+
         Axios.get('http://localhost:8081/voos')
             .then(res => {
-                const voos = res.data;
+                var voos = res.data;
                 this.setState({ voos });
 
             }).catch((err) => {
                 console.log(err)
             });
+        /* var Pessoa = GetSetIds.idUser(0,'get');
+        console.log(Pessoa)
+        Axios.get('http://localhost:8080/users/' + Pessoa)
+            .then(res => {
+                console.log(res.data)
+            }).catch(err => { console.log(err) })
+ */
     }
-
 
     escutadorDeInput = event => {
 
         const { name, value } = event.target;
-        console.log(name)
-        console.log(value)
+
         this.setState({
             [name]: value
         });
+
     }
 
 
-    submitFormulario = () => {
+    submitFormularioFilter = (filter) => {
+        if (filter === 'origemAndDestino') {
+            let origem = (this.state.origem)
+            let destino = (this.state.destino)
+            Axios.post('http://localhost:8081/voos/origem/' + origem + '/destino/' + destino).then(res => {
+                var voos = res.data;
+                this.setState({ voos })
+            })
 
+        }
+        else {
+            let data_volta = (this.state.data_volta)
+            let data_ida = (this.state.data_ida)
+            Axios.post('http://localhost:8081/voos/data_ida/' + data_ida + '/data_volta/' + data_volta).then(res => {
+                var voos = res.data;
+                this.setState({ voos })
+            })
 
+        }
 
 
     }
     submitCompra = (id) => {
-        console.log('voo ', id)
-        console.log(' quem comprou foi ',GetSetIds.idUser(0,'get') )
-
-
-
+        GetSetIds.idVoo(id, 'set');
     }
     render() {
         return (
@@ -88,7 +115,7 @@ export default class Home extends Component {
                                     id="data_ida"
                                     name="data_ida"
                                     onChange={this.escutadorDeInput}
-                                    type="date" 
+                                    type="date"
                                 />
                             </div>
 
@@ -98,19 +125,33 @@ export default class Home extends Component {
                                     id="data_volta"
                                     name="data_volta"
                                     onChange={this.escutadorDeInput}
-                                    
+
 
                                 />
                             </div>
                         </div>
-                        <button onClick={this.submitFormulario} className="btn btn-primary" type="button">Pesquisar
-                    </button>
+                        <div className="buttonFilter">
+                            <Dropdown className="dropdownLogin">
+                                <Dropdown.Toggle>
+                                    Pesquisar
+                                </Dropdown.Toggle>
+                                <Dropdown.Menu>
+                                    <button className="dropdown-item" onClick={() => { this.submitFormularioFilter('origemAndDestino') }}>Filtrar por origem e destino</button>
+
+
+                                    <button className="dropdown-item" onClick={() => { this.submitFormularioFilter('origemAndDestino') }}>Filtrar por data</button>
+
+
+                                </Dropdown.Menu>
+                            </Dropdown>
+
+                        </div>
                     </form>
 
                     <div className="container-next">
                         <h4>Deseja reservar apenas a hospedagem ?</h4>
                         <Link to="/hospedagem">
-                            <button onClick={this.submitFormulario} className="btn btn-primary" id="button-hosp" type="button">Clique aqui
+                            <button className="btn btn-primary" id="button-hosp" type="button">Clique aqui
                             </button>
                         </Link>
                     </div>
@@ -142,7 +183,7 @@ export default class Home extends Component {
                                 <strong>VALOR:</strong>
                                 <p>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(voo.preco)}</p>{/* problema aqui, ele esta escutando a funcao a quantidade de  vezes
                                 de listagem ou seja autoexecutando por causa da passagem do parametro () caso tirar funciona normal porem perdemos a passagem do parametro */}
-                                <Link to="/hospedagem"><button className="btn btn-primary" id="buttoncompra" onClick={()=>{this.submitCompra(voo.id)}} type="button"     >Comprar </button>
+                                <Link to="/hospedagem"><button className="btn btn-primary" id="buttoncompra" onClick={() => { this.submitCompra(voo.id) }} type="button"     >Comprar </button>
                                 </Link>
                             </div>
                         ))}

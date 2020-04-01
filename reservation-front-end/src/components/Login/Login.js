@@ -21,7 +21,7 @@ export default class Login extends Component {
     }
     Logar = () => {
         var nome = this.state.nome;
-        console.log(nome)
+       
         Axios.post('http://localhost:8080/users', { nome }).then((res) => {
            
             GetsSetIds.idUser(res.data.id,"set")

@@ -57,21 +57,46 @@ public class voosService implements voosRepository {
    
 
     @Override
-    public List<voos> findByOrigemAndDestino(final String Destino, final String Origem) {
+    public List<voos> findByOrigemAndDestino(final String Origem, final String Destino) {
+       
         return jdbcTemplate.query("select * from voos where origem like ? and destino <= ?",
                 new Object[] { "%" + Origem + "%", Destino },
-                (rs, rowNum) -> new voos(rs.getInt("id"), rs.getString("nomeEmp_Emp"), rs.getDouble("preco"),
-                        rs.getString("origem"), rs.getString("destino"), rs.getString("data_ida"),rs.getString("data_volta")));
+                (rs, rowNum) -> new voos(
+                    rs.getInt("id"), 
+                    rs.getString("nomeEmp"), 
+                    rs.getDouble("preco"),
+                    rs.getString("origem"), 
+                    rs.getString("destino"), 
+                    rs.getString("data_ida"),
+                    rs.getString("data_volta")));
     }
 
     @Override
+    public List<voos> findByData_idaAndData_volta(final String data_ida, final String data_volta) {
+       
+        return jdbcTemplate.query("SELECT * FROM voos WHERE data_ida LIKE ? AND data_volta >= ?",
+                new Object[] { "%" + data_ida + "%" , data_volta },
+                (rs, rowNum) -> new voos(
+                    rs.getInt("id"), 
+                    rs.getString("nomeEmp"),
+                    rs.getDouble("preco"),
+                    rs.getString("origem"), 
+                    rs.getString("destino"),
+                    rs.getString("data_ida"),
+                    rs.getString("data_volta")));
+    }
+
+
+
+
+    @Override
     public String getNameById(final Long id) {
-        return null;
+        return null;// NAO DISPONIBILIZADO PELA API
     }
 
     @Override
     public int update(Integer id, voos voos) {
-        return 1;
+        return 1;// NAO DISPONIBILIZADO PELA API
     }
 
   

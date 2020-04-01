@@ -6,6 +6,7 @@ import com.synchro.voos.voos.repository.voosRepository;
 
 import com.synchro.voos.voos.models.voos;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +44,23 @@ public class voosController {
     public @ResponseBody Object salvar(@RequestBody voos VOOS) {
       return voos.save(VOOS);
     }
+
+    @PostMapping(path="/origem/{origem}/destino/{destino}") 
+    public @ResponseBody List<voos> pesquisarFilter(@PathVariable String origem,@PathVariable String destino ) {
+     
+      return voos.findByOrigemAndDestino(origem,destino);
+    }
+
+    
+    @PostMapping(path="/data_ida/{data_ida}/data_volta/{data_volta}") 
+    public @ResponseBody List<voos> pesquisarFilterDate(@PathVariable String data_ida,@PathVariable String data_volta ) {
+     
+      return voos.findByData_idaAndData_volta(data_ida,data_volta);
+    }
+
+
+
+
 
 //    rota local/
    /*  @PostMapping(path="/filter") 

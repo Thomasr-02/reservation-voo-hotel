@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './Hospedagem.css'
 import Axios from 'axios'
 import { Link } from 'react-router-dom'
-
+import GetSetIds from '../pages-statics/GetSetIds'
 export default class Hospedagem extends Component {
     constructor(props) {
         super(props);
@@ -18,10 +18,19 @@ export default class Hospedagem extends Component {
                 const hoteis = res.data;
                 this.setState({ hoteis });
 
+
+
             }).catch((err) => {
                 console.log(err)
             });
+
     }
+
+    submitCompra(id) {
+        GetSetIds.idHotel(id, 'set')
+        console.log('VOO COMPRADO', GetSetIds.idVoo(0, 'get'));
+    }
+
 
     render() {
         return (
@@ -45,7 +54,7 @@ export default class Hospedagem extends Component {
 
                                 <strong>VALOR:</strong>
                                 <p>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(hotel.preco)}</p>
-                                <Link to="/hospedagem"><button className="btn btn-primary" id="buttoncompra" onClick={this.Logar} type="button"     >Comprar </button>
+                                <Link to="/hospedagem"><button className="btn btn-primary" id="buttoncompra" onClick={() => { this.submitCompra(hotel.id) }} type="button"     >Comprar </button>
                                 </Link>
                             </div>
                         ))}
