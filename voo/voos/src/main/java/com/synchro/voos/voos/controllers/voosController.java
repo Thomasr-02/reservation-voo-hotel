@@ -35,42 +35,44 @@ public class voosController {
     }
 
     @GetMapping(path={"/{id}"})
-    public @ResponseBody Object listVoosID(@PathVariable Long id) {
+    public @ResponseBody Object listVoosID(@PathVariable final Long id) {
       return voos.findById(id);
     }
-   
-    
-    @PostMapping(path="") 
-    public @ResponseBody Object salvar(@RequestBody voos VOOS) {
+
+    @PostMapping(path = "")
+    public @ResponseBody Object salvar(@RequestBody final voos VOOS) {
       return voos.save(VOOS);
     }
 
-    @GetMapping(path="/origem/{origem}/destino/{destino}") 
-    public @ResponseBody List<voos> pesquisarFilter(@PathVariable String origem,@PathVariable String destino ) {
-     
-      return voos.findByOrigemAndDestino(origem,destino);
+    @GetMapping(path = "/origem/{origem}/destino/{destino}")
+    public @ResponseBody List<voos> pesquisarFilter(@PathVariable final String origem,
+        @PathVariable final String destino) {
+
+      return voos.findByOrigemAndDestino(origem, destino);
     }
 
-    
-    @GetMapping(path="/data_ida/{data_ida}/data_volta/{data_volta}") 
-    public @ResponseBody List<voos> pesquisarFilterDate(@PathVariable String data_ida,@PathVariable String data_volta ) {
-     
-      return voos.findByData_idaAndData_volta(data_ida,data_volta);
+    @GetMapping(path = "/data_ida/{data_ida}/data_volta/{data_volta}")
+    public @ResponseBody List<voos> pesquisarFilterDate(@PathVariable final String data_ida,
+        @PathVariable final String data_volta) {
+
+      return voos.findByData_idaAndData_volta(data_ida, data_volta);
     }
 
+    @GetMapping(path = "/data_ida/{data_ida}/data_volta/{data_volta}/origem/{origem}/destino/{destino}")
+    public @ResponseBody List<voos> pesquisarAll(@PathVariable final String data_ida,
+        @PathVariable final String data_volta, @PathVariable final String origem, @PathVariable final String destino) {
 
+      return voos.pesquisarAll(data_ida, data_volta, origem, destino);
+    }
 
+    // rota local/
+    /*
+     * @PostMapping(path="/filter") public @ResponseBody Object salvar(@RequestBody
+     * voos VOOS) { return voos.save(VOOS); }
+     */
 
-
-//    rota local/
-   /*  @PostMapping(path="/filter") 
-    public @ResponseBody Object salvar(@RequestBody voos VOOS) {
-      return voos.save(VOOS);
-    } */
-
-
-    @DeleteMapping(path={"/{id}"})
-    public @ResponseBody void delete(@PathVariable Integer id) {
+    @DeleteMapping(path = { "/{id}" })
+    public @ResponseBody void delete(@PathVariable final Integer id) {
       voos.deleteById(id);
     }
 

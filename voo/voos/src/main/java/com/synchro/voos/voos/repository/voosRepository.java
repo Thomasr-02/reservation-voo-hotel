@@ -23,5 +23,6 @@ public interface voosRepository  {
     String getNameById(Long id);
 
     List<voos> findByData_idaAndData_volta(String data_ida, String data_volta);
-
+    
+    List<voos> pesquisarAll(String data_ida, String data_volta,String Destino, String Origem);
 }

@@ -99,6 +99,20 @@ public class voosService implements voosRepository {
         return 1;// NAO DISPONIBILIZADO PELA API
     }
 
+    @Override
+    public List<voos> pesquisarAll(String data_ida, String data_volta, String Destino, String Origem) {
+        return jdbcTemplate.query("SELECT * FROM voos WHERE data_ida LIKE ? AND data_volta >= ? AND origem LIKE ? AND destino LIKE ?",
+        new Object[] { "%" + data_ida + "%" , data_volta + "%" + Origem + "%" , Destino},
+        (rs, rowNum) -> new voos(
+            rs.getInt("id"), 
+            rs.getString("nomeEmp"),
+            rs.getDouble("preco"),
+            rs.getString("origem"), 
+            rs.getString("destino"),
+            rs.getString("data_ida"),
+            rs.getString("data_volta")));
+    }
+
   
     
 
