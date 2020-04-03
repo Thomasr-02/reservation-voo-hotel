@@ -26,6 +26,7 @@ export default class Home extends Component {
                 PopUp.showMessage("success","Listagem de voos success!");
                 this.setState({ voos });
 
+
             }).catch((err) => {
                 PopUp.showMessage("error","Listagem de voos falhou ao consultar serviço!");
                 console.log(err)
@@ -74,6 +75,7 @@ export default class Home extends Component {
 
     }
     submitCompra = (id) => {
+        console.log(id)
         GetSetIds.idVoo(id, 'set');
     }
     render() {
@@ -177,7 +179,7 @@ export default class Home extends Component {
                                 <p>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(voo.preco)}</p>{/* problema aqui, ele esta escutando a funcao a quantidade de  vezes
                                 de listagem ou seja autoexecutando por causa da passagem do parametro () caso tirar funciona normal porem perdemos a passagem do parametro */}
                                 
-                                <Link to="/hospedagem"><button className="btn btn-primary" id="buttoncompra" onClick={() => { this.submitCompra(voo.id) }} type="button"     >Comprar </button>
+                                <Link to="/hospedagem"><button className="btn btn-primary" id="buttoncompra" type="button" onClick={()=>{this.submitCompra(voo.id)}}    >Comprar </button>
                                 </Link>
                             </div>
                         ))}

@@ -48,7 +48,7 @@ export default class Hospedagem extends Component {
 
     submitCompra(id) {
         GetSetIds.idHotel(id, 'set')
-        console.log('VOO COMPRADO', GetSetIds.idVoo(0, 'get'));
+
     }
 
     submitFormulario() {
@@ -107,7 +107,7 @@ export default class Hospedagem extends Component {
                                             <p>Valor: {Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(hotel.preco)}</p>
                                         </div>
                                         <div className="card-action">
-                                            <Link to="/finalizar"><button className="btn btn-primary" id="buttoncompra" onClick={() => { this.submitCompra(hotel.id) }} type="button"     >Comprar </button>
+                                            <Link to="/resumo"><button className="btn btn-primary" id="buttoncompra" onClick={() => { this.submitCompra(hotel.id) }} type="button"     >Comprar </button>
                                             </Link>
                                         </div>
                                     </div>

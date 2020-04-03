@@ -12,6 +12,7 @@ import NotFound from './components/pages-statics/NotFound'
 import Home from './components/Home/Home'
 import Hospedagem from './components/Hospedagem/Hospedagem'
 import Finalizar from './components/finalizar/Finalizar';
+import Resumo from './components/finalizar/Resumo/Resumo';
 
 ReactDOM.render(
     <BrowserRouter>
@@ -21,6 +22,7 @@ ReactDOM.render(
             <Route path="/home" exact={true} component={Home}></Route>
             <Route path="/hospedagem" exact={true} component={Hospedagem}></Route>
             <Route path="/finalizar" exact={true} component={Finalizar}></Route>
+            <Route path="/resumo" exact={true} component={Resumo}></Route>
             <Route component={NotFound}></Route>
 
 

@@ -1,0 +1,42 @@
+.card-resum{
+
+    margin-top: 5px ;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+
+.lottie{ 
+    width: 20%;
+    margin-left: 35%;
+}
+
+.background-resumo{
+    min-height: 600px;
+    margin-left: 25%;
+    margin-right: 25%;
+    
+    background-color: rgb(185, 206, 206);
+}
+
+.info{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.btn-floating{
+    
+    margin-left: 100%;
+    width: 100px;
+}
+
+.background-resumo-body{
+    background-color: rgba(69, 130, 228,0.7);
+    height: 100vh;
+
+    text-align: center;
+    padding-top: 10%;
+    position: relative;
+    align-items: center;
+
+}

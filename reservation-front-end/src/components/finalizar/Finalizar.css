@@ -1,5 +1,10 @@
 .body-finalizar{
     background-color: rgba(69, 130, 228,0.7);
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+
+    text-align: center;
+    padding-top: 10%;
+    position: relative;
+    align-items: center;
+
 }
