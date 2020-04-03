@@ -22,6 +22,7 @@ export default class Hospedagem extends Component {
 
                 PopUp.showMessage("success", 'Listagem dos hoteis com sucesso!')
                 const hoteis = res.data;
+                
                 this.setState({ hoteis });
 
 
@@ -98,9 +99,10 @@ export default class Hospedagem extends Component {
                                         
                                             <img  className="card-image" src={hotel.url_imagem} />
                                         
-
+                                            
                                         <div className="card-content">
-                                            <span className="card-title">{hotel.nome}</span>
+                                            <span className="card-title">{hotel.cidade}</span>
+                                            <p className="card-title">{hotel.nome}</p>
                                             <p>{hotel.descricao}</p>
                                             <p>Valor: {Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(hotel.preco)}</p>
                                         </div>

@@ -1,75 +1,68 @@
-
-.body-home{
-    
+.body-home {
     min-height: 100vh;
     display: grid;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
     grid-template-columns: auto auto;
-      width: 100%;
-      height: 100%;
-      background-image: url(background.jpeg); 
-      background-repeat: no-repeat;
-      
-      background-size: cover ;
-    
+    width: 100%;
+    height: 100%;
+    background-image: url(background.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.container{
+.container {
     padding: 10px 10px;
-    
+    position: relative;
+    margin-top: 0%;
 }
-.form{
-    margin:20px 20px;
+
+.form {
+    margin: 20px 20px;
     border-radius: 15px;
     background-color: rgb(207, 207, 219);
     padding: 10px 10px;
-
 }
 
-.group-card-voo{
+.group-card-voo {
     display: grid;
     grid-template-columns: auto auto;
     width: 500px;
-
 }
-.card-individual{
-    
+
+.card-individual {
     border: 5px solid rgb(69, 130, 228);
     margin: 10px 10px;
     padding: 10px 10px;
     background-color: rgb(207, 207, 219);
     border-radius: 15px;
-    
 }
 
-#buttoncompra{
+#buttoncompra {
     border: 0;
     border-radius: 8px;
     margin-left: 50%;
 }
-.input-group {
-    
-    padding : 8px;
 
+.input-group {
+    padding: 8px;
     /* background-color:blue;
      */
 }
-.container-next{
+
+.container-next {
     margin: 90px 10px;
     padding: 10px 10px;
-    color:black;
-    background-color: rgb(207, 207, 219) ;
+    color: black;
+    background-color: rgb(207, 207, 219);
     border-radius: 15px;
-
 }
-.btn btn-warning{
+
+.btn btn-warning {
     background-color: blue;
 }
 
-#button-hosp{
-    
+#button-hosp {
     background-color: red;
 }
