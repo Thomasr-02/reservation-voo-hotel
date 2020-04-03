@@ -14,12 +14,18 @@ public class hotel {
     private String nome;
     private String descricao;
     private Double preco;
-
+    private String url_imagem;
 
 
     //GETTERS AND SETTERS
     public Integer getId() {
         return id;
+    }
+    public String getUrl_imagem() {
+        return url_imagem;
+    }
+    public String setUrl_imagem() {
+        return url_imagem;
     }
 
     public Double getPreco() {

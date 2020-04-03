@@ -45,14 +45,14 @@ public class voosController {
       return voos.save(VOOS);
     }
 
-    @PostMapping(path="/origem/{origem}/destino/{destino}") 
+    @GetMapping(path="/origem/{origem}/destino/{destino}") 
     public @ResponseBody List<voos> pesquisarFilter(@PathVariable String origem,@PathVariable String destino ) {
      
       return voos.findByOrigemAndDestino(origem,destino);
     }
 
     
-    @PostMapping(path="/data_ida/{data_ida}/data_volta/{data_volta}") 
+    @GetMapping(path="/data_ida/{data_ida}/data_volta/{data_volta}") 
     public @ResponseBody List<voos> pesquisarFilterDate(@PathVariable String data_ida,@PathVariable String data_volta ) {
      
       return voos.findByData_idaAndData_volta(data_ida,data_volta);

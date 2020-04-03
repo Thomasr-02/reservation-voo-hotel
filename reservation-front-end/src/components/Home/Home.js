@@ -3,8 +3,7 @@ import './Home.css'
 import Axios from 'axios';
 import { Link } from 'react-router-dom'
 import GetSetIds from '../pages-statics/GetSetIds'
-import { Dropdown } from 'react-bootstrap'
-
+import PopUp from '../pages-statics/PopUp'
 
 
 export default class Home extends Component {
@@ -24,9 +23,11 @@ export default class Home extends Component {
         Axios.get('http://localhost:8081/voos')
             .then(res => {
                 var voos = res.data;
+                PopUp.showMessage("success","Listagem de voos success!");
                 this.setState({ voos });
 
             }).catch((err) => {
+                PopUp.showMessage("error","Listagem de voos falhou ao consultar serviço!");
                 console.log(err)
             });
         /* var Pessoa = GetSetIds.idUser(0,'get');
@@ -49,11 +50,12 @@ export default class Home extends Component {
     }
 
 
-    submitFormularioFilter = (filter) => {
-        if (filter === 'origemAndDestino') {
+    submitFormularioFilter = (e) => {
+        e.preventDefault();
+        if (e.target.name === 'origemAndDestino') {
             let origem = (this.state.origem)
             let destino = (this.state.destino)
-            Axios.post('http://localhost:8081/voos/origem/' + origem + '/destino/' + destino).then(res => {
+            Axios.get('http://localhost:8081/voos/origem/' + origem + '/destino/' + destino).then(res => {
                 var voos = res.data;
                 this.setState({ voos })
             })
@@ -62,7 +64,7 @@ export default class Home extends Component {
         else {
             let data_volta = (this.state.data_volta)
             let data_ida = (this.state.data_ida)
-            Axios.post('http://localhost:8081/voos/data_ida/' + data_ida + '/data_volta/' + data_volta).then(res => {
+            Axios.get('http://localhost:8081/voos/data_ida/' + data_ida + '/data_volta/' + data_volta).then(res => {
                 var voos = res.data;
                 this.setState({ voos })
             })
@@ -76,7 +78,7 @@ export default class Home extends Component {
     }
     render() {
         return (
-            <div className="body">
+            <div className="body-home">
 
 
                 <div className="container">
@@ -130,22 +132,13 @@ export default class Home extends Component {
                                 />
                             </div>
                         </div>
-                        <div className="buttonFilter">
-                            <Dropdown className="dropdownLogin">
-                                <Dropdown.Toggle>
-                                    Pesquisar
-                                </Dropdown.Toggle>
-                                <Dropdown.Menu>
-                                    <button className="dropdown-item" onClick={() => { this.submitFormularioFilter('origemAndDestino') }}>Filtrar por origem e destino</button>
+
+                        <p>Filtrar por:</p>
+                        <button className="btn btn-primary" name="origemAndDestino" onClick={this.submitFormularioFilter}>origem e destino</button>
+
+                        <button className="btn btn-warning" name="data_idaAnddata_volta" onClick={this.submitFormularioFilter}> data</button>
 
 
-                                    <button className="dropdown-item" onClick={() => { this.submitFormularioFilter('origemAndDestino') }}>Filtrar por data</button>
-
-
-                                </Dropdown.Menu>
-                            </Dropdown>
-
-                        </div>
                     </form>
 
                     <div className="container-next">
@@ -156,13 +149,13 @@ export default class Home extends Component {
                         </Link>
                     </div>
 
+                    <p> Resultados encontrados:{this.state.voos.length}</p>
                 </div>
 
 
 
                 <div className="group">
-                    <p> Resultados encontrados:{this.state.voos.length}</p>
-                    <div className="group-card">
+                    <div className="group-card-voo">
                         {this.state.voos.map((voo, index) => (
                             <div className="card-individual" key={index}>
 
@@ -183,6 +176,7 @@ export default class Home extends Component {
                                 <strong>VALOR:</strong>
                                 <p>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(voo.preco)}</p>{/* problema aqui, ele esta escutando a funcao a quantidade de  vezes
                                 de listagem ou seja autoexecutando por causa da passagem do parametro () caso tirar funciona normal porem perdemos a passagem do parametro */}
+                                
                                 <Link to="/hospedagem"><button className="btn btn-primary" id="buttoncompra" onClick={() => { this.submitCompra(voo.id) }} type="button"     >Comprar </button>
                                 </Link>
                             </div>

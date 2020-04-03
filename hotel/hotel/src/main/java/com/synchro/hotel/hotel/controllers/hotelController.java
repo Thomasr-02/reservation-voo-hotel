@@ -30,7 +30,11 @@ public class hotelController {
         return HOTELRepository.findById(id);
 
     }
-    
+  /*   @GetMapping(path = "/cidade/{cidade}")
+    public @ResponseBody Iterable<hotel> listFilter(@PathVariable final String cidade) {
+        return HOTELRepository.ListFilter(cidade);
+
+    } */
 
     @PostMapping(path = "")
     public @ResponseBody Object addHotel(@RequestBody final hotel hotel) {

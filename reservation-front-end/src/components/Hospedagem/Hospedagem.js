@@ -3,11 +3,15 @@ import './Hospedagem.css'
 import Axios from 'axios'
 import { Link } from 'react-router-dom'
 import GetSetIds from '../pages-statics/GetSetIds'
+import PopUp from '../pages-statics/PopUp'
+
+
 export default class Hospedagem extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            hoteis: ['']
+            hoteis: [''],
+            cidade: ''
         }
     }
 
@@ -15,6 +19,8 @@ export default class Hospedagem extends Component {
     componentDidMount() {
         Axios.get('http://localhost:8080/hotel')
             .then(res => {
+
+                PopUp.showMessage("success", 'Listagem dos hoteis com sucesso!')
                 const hoteis = res.data;
                 this.setState({ hoteis });
 
@@ -22,13 +28,33 @@ export default class Hospedagem extends Component {
 
             }).catch((err) => {
                 console.log(err)
+                PopUp.showMessage("error", 'Listagem dos hoteis falhou ao consultar serviço!!')
+
             });
 
     }
 
+
+    escutadorDeInput = event => {
+
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value
+        });
+
+    }
+
+
     submitCompra(id) {
         GetSetIds.idHotel(id, 'set')
         console.log('VOO COMPRADO', GetSetIds.idVoo(0, 'get'));
+    }
+
+    submitFormulario() {
+
+        Axios.get('http://localhost:8080/hotel?cidade=' + this.state.cidade).then(res => {
+            console.log(res.data);
+        }).catch(err => console.log(err));
     }
 
 
@@ -37,28 +63,61 @@ export default class Hospedagem extends Component {
             <div className="body-hospedagem">
                 <div className="container-hosp">
 
+                    <form className="form" >
+                        <div className="input-group">
+                            <div className="input-block">
+                                <label htmlFor="cidade">Cidade</label>
+                                <input
+                                    name="cidade"
+                                    id="cidade"
+                                    onChange={this.escutadorDeInput}
+                                    placeholder="ex: Recife"
+                                    required
+                                />
+                            </div>
+
+                        </div>
+
+                        <button className="btn btn-primary" name="origemAndDestino" onClick={this.submitFormulario}>Pesquisar</button>
 
 
+                    </form>
 
+
+                    <p> Resultados encontrados:{this.state.hoteis.length}</p>
                 </div>
                 <div className="group">
-                    <p> Resultados encontrados:{this.state.hoteis.length}</p>
-                    <div className="group-card">
-                        {this.state.hoteis.map((hotel, index) => (
-                            <div className="card-individual" key={index}>
 
-                                <strong>{hotel.nome}</strong>
-                                <p>{hotel.cidade}</p>
-                                <p>{hotel.descricao}</p>
+                    {this.state.hoteis.map((hotel, index) => (
 
+                        <div className="group-card" key={index}>
 
-                                <strong>VALOR:</strong>
-                                <p>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(hotel.preco)}</p>
-                                <Link to="/hospedagem"><button className="btn btn-primary" id="buttoncompra" onClick={() => { this.submitCompra(hotel.id) }} type="button"     >Comprar </button>
-                                </Link>
+                            <div className="row">
+                                <div className="col s12 m7">
+                                    <div className="card">
+                                        
+                                            <img  className="card-image" src={hotel.url_imagem} />
+                                        
+
+                                        <div className="card-content">
+                                            <span className="card-title">{hotel.nome}</span>
+                                            <p>{hotel.descricao}</p>
+                                            <p>Valor: {Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(hotel.preco)}</p>
+                                        </div>
+                                        <div className="card-action">
+                                            <Link to="/finalizar"><button className="btn btn-primary" id="buttoncompra" onClick={() => { this.submitCompra(hotel.id) }} type="button"     >Comprar </button>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        ))}
-                    </div>
+                        </div>
+
+
+                    ))}
+
+
+
 
                 </div>
 
@@ -66,3 +125,6 @@ export default class Hospedagem extends Component {
         )
     }
 }
+
+
+

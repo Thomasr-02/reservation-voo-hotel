@@ -2,12 +2,12 @@
     background-color: rgba(69, 130, 228,0.7);
     
     height: 100%;
-    background-repeat: no-repeat;
-    background-size: cover ;
+    width: 100%;
+   
     text-align: center;
     padding-top: 10%;
     position: relative;
-    align-items: center;
+    
     
     
     
@@ -15,6 +15,49 @@
 
 
 .container-hosp{
-  color:black;
-  font-size: 50px;
+  margin-left: 25%;
+  width: 50%;
+}
+
+.group{
+  width:  300px;
+  grid-template-columns: auto auto;
+  display: grid;
+  margin-left: 30%;
+  
+}
+
+.group-card{
+  text-align: center;
+  align-items: center;
+  width:  300px;
+  color: black;
+  ;
+}
+
+.card-image{
+  
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-left: 1px; 
+  max-width: 300px;
+  max-height: 200px;
+  
+    
+}
+
+.card-content{
+  position: relative;
+  margin-top: 2%;
+  max-width: 350px;
+}
+
+.card-action{
+  max-width: 300px;
+  
+}
+
+.card{
+  max-width: 260px;
+  max-height: 400px;
 }

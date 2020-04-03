@@ -1,18 +1,19 @@
 
-.body{
+.body-home{
     
-    width: 100%;
-    
-    flex-direction: column;
-    
-    justify-content: center;
-    background-image: url(airline.jpg); 
-    grid-template-columns: auto auto;
+    min-height: 100vh;
     display: grid;
-    background-repeat: no-repeat;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     
-    background-size: cover ;
-
+    grid-template-columns: auto auto;
+      width: 100%;
+      height: 100%;
+      background-image: url(background.jpeg); 
+      background-repeat: no-repeat;
+      
+      background-size: cover ;
     
 }
 
@@ -28,7 +29,7 @@
 
 }
 
-.group-card{
+.group-card-voo{
     display: grid;
     grid-template-columns: auto auto;
     width: 500px;
@@ -64,7 +65,9 @@
     border-radius: 15px;
 
 }
-
+.btn btn-warning{
+    background-color: blue;
+}
 
 #button-hosp{
     
