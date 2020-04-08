@@ -35,6 +35,7 @@ export default class Login extends Component {
     render() {
         return (
             <div className="background">
+                    <h1>Sync Booking</h1>
                 <div className="body-login">
                     <div className="login">
                         <div className="texto">

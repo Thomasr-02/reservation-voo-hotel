@@ -42,6 +42,21 @@ export default class Hospedagem extends Component {
         this.setState({
             [name]: value
         });
+        Axios.get('http://localhost:8080/hotel?cidade='+this.state.cidade)
+            .then(res => {
+
+                PopUp.showMessage("success", 'Listagem dos hoteis filtrados com sucesso!')
+                const hoteis = res.data;
+                
+                this.setState({ hoteis });
+
+
+
+            }).catch((err) => {
+                console.log(err)
+                PopUp.showMessage("error", 'Listagem dos hoteis falhou ao consultar serviço!!')
+
+            });
 
     }
 
